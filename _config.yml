@@ -4,19 +4,21 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title:       Jeekons
-email:       roneylacerda@gmail.com
-description: Lorem ipsum dolor est
-baseurl:     "" # the subpath of your site, e.g. /blog
-url:         "" # the base hostname & protocol for your site, e.g. http://example.com
+title:            Jeekons
+author:           Roney Stones
+email:            roneylacerda@gmail.com
+description:      Start project with Jekyll, Tachyons and Gulp
+baseurl:          "" # the subpath of your site, e.g. /blog
+url:              "" # the base hostname & protocol for your site, e.g. http://example.com
+google_analytics: UA-xxxxxxxx-x
 
 # Assets
 sass:
-  sass_dir:  _sass
-  style:     :compressed
+  sass_dir:       _scss
+  style:          :compressed
 
 # Build settings
-markdown:    kramdown
+markdown:         kramdown
 
 plugins:
   - jekyll-feed
@@ -24,14 +26,13 @@ plugins:
 include:
   - _pages
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - gulpfile.js
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
