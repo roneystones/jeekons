@@ -31,7 +31,7 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
   });
 });
 
-// Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
+// Compile files
 gulp.task('sass', function() {
   return gulp.src('_scss/main.scss')
     .pipe(sass({
