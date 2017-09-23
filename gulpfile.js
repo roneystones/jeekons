@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
+var cssmin = require('gulp-cssmin');
 var cp = require('child_process');
 
 var jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
@@ -9,7 +10,7 @@ var messages = {
 };
 
 // Build the Jekyll Site
-gulp.task('jekyll-build', function(done) {
+gulp.task('jekyll-build', function (done) {
   browserSync.notify(messages.jekyllBuild);
   return cp.spawn(jekyll, ['build'], {
       stdio: 'inherit'
@@ -18,12 +19,12 @@ gulp.task('jekyll-build', function(done) {
 });
 
 // Rebuild Jekyll & do page reload
-gulp.task('jekyll-rebuild', ['jekyll-build'], function() {
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
   browserSync.reload();
 });
 
 // Wait for jekyll-build, then launch the Server
-gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
+gulp.task('browser-sync', ['sass', 'jekyll-build'], function () {
   browserSync({
     server: {
       baseDir: '_site'
@@ -32,22 +33,23 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
 });
 
 // Compile files
-gulp.task('sass', function() {
+gulp.task('sass', function () {
   return gulp.src('_scss/main.scss')
     .pipe(sass({
       includePaths: ['scss'],
       onError: browserSync.notify
     }))
+    .pipe(cssmin())
+    .pipe(gulp.dest('assets/css'))
     .pipe(gulp.dest('_site/assets/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
-    .pipe(gulp.dest('assets/css'));
 });
 
 // Watch scss files for changes & recompile
 // Watch html/md files, run jekyll & reload BrowserSync
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('_scss/*.scss', ['sass']);
   gulp.watch(['*.html', '_includes/*.html', '_layouts/*.html', '_pages/*', '_posts/*'], ['jekyll-rebuild']);
 });
