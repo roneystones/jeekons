@@ -1,14 +1,15 @@
 ---
-layout: default
+layout: base
 ---
-<article itemscope itemtype="http://schema.org/BlogPosting">
 
+<article itemscope itemtype="http://schema.org/BlogPosting">
+  
   <header>
     <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+    
     <p>
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        {{ page.date | date: date_format }}
+        {{ page.date | date: "%d %m %Y" }}
       </time>
 
       {% if page.author %}
@@ -16,10 +17,13 @@ layout: default
             <span itemprop="name">{{ page.author }}</span>
           </span>
       {% endif %}
+
+      <span>• Tags: {{ page.tags }}</span>
     </p>
   </header>
 
   <div itemprop="articleBody">
     {{ content }}
   </div>
+  
 </article>

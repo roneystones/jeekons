@@ -1,37 +1,23 @@
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+name:              Roney Stones
+title:             Roney Stones
+email:             roneylacerda@gmail.com
+description:       Data + Design + Front-end. Em busca de uma internet mais rápida e acessível.
 
-title:            Jeekons
-author:           Roney Stones
-email:            roneylacerda@gmail.com
-description:      Start project with Jekyll, Tachyons and Gulp
-baseurl:          "" # the subpath of your site, e.g. /blog
-url:              "" # the base hostname & protocol for your site, e.g. http://example.com
-google_analytics: UA-xxxxxxxx-x
+baseurl:           "" # the subpath of your site, e.g. /blog
+url:               "http://roneystones.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-# Assets
-sass:
-  sass_dir:       _scss
+markdown: kramdown
 
-# Build settings
-markdown:         kramdown
-
-plugins:
-  - jekyll-feed
-
-include:
-  - _pages
+# include:
+#   - _pages
 
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
   - package.json
+  - node_modules
   - gulpfile.js
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+
+plugins:
+  - jekyll-minifier
+
+jekyll-minifier:
+  exclude: ["assets/css/*.css","*.min.*"]
